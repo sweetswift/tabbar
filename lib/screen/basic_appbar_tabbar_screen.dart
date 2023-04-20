@@ -14,7 +14,8 @@ class BasicAppbarTabbarScreen extends StatelessWidget {
           bottom: TabBar(
             tabs: TABS
                 .map(
-                  (e) => Tab(
+                  (e) =>
+                  Tab(
                     icon: Icon(
                       e.icon,
                     ),
@@ -22,12 +23,17 @@ class BasicAppbarTabbarScreen extends StatelessWidget {
                       e.label,
                     ),
                   ),
-                )
+            )
                 .toList(),
           ),
         ),
-        body: Column(
-          children: [],
+        body: TabBarView(
+          physics: NeverScrollableScrollPhysics(), //양옆 스크롤 막기
+          children: TABS.map((e) =>Center(
+            child: Icon(
+              e.icon,
+            ),
+          )).toList(),
         ),
       ),
     );
