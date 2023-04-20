@@ -12,6 +12,9 @@ class BasicAppbarTabbarScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text('BasicAppBarScreen'),
           bottom: TabBar(
+            indicatorColor: Colors.red,
+            indicatorWeight: 4.0,
+            indicatorSize: TabBarIndicatorSize.tab,
             tabs: TABS
                 .map(
                   (e) =>
