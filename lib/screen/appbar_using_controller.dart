@@ -27,14 +27,50 @@ class _AppBarUsingControllerState extends State<AppBarUsingController>
     return Scaffold(
       appBar: AppBar(
         title: Text('Appbar Using Controller'),
+        bottom: TabBar(
+          controller: tabController,
+          tabs: TABS
+              .map((e) => Tab(
+                    icon: Icon(
+                      e.icon,
+                    ),
+                    child: Text(e.label),
+                  ))
+              .toList(),
+        ),
       ),
       body: TabBarView(
         controller: tabController,
-        children: TABS.map((e) => Center(
-          child: Icon(
-            e.icon
-          ),
-        )).toList(),
+        children: TABS
+            .map((e) => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      e.icon,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            '이전',
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 16.0,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            '다음',
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ))
+            .toList(),
       ),
     );
   }
