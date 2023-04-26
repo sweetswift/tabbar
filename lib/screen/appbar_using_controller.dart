@@ -20,6 +20,10 @@ class _AppBarUsingControllerState extends State<AppBarUsingController>
       length: TABS.length,
       vsync: this,
     );
+
+    tabController.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
@@ -30,46 +34,58 @@ class _AppBarUsingControllerState extends State<AppBarUsingController>
         bottom: TabBar(
           controller: tabController,
           tabs: TABS
-              .map((e) => Tab(
-                    icon: Icon(
-                      e.icon,
-                    ),
-                    child: Text(e.label),
-                  ))
+              .map((e) =>
+              Tab(
+                icon: Icon(
+                  e.icon,
+                ),
+                child: Text(e.label),
+              ))
               .toList(),
         ),
       ),
       body: TabBarView(
         controller: tabController,
         children: TABS
-            .map((e) => Column(
+            .map((e) =>
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  e.icon,
+                ),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      e.icon,
+                    if(tabController.index != 0)
+                    ElevatedButton(
+                      onPressed: () {
+                        tabController.animateTo(
+                          tabController.index - 1,
+                        );
+                      },
+                      child: Text(
+                        '이전',
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            '이전',
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 16.0,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            '다음',
-                          ),
-                        ),
-                      ],
-                    )
+                    const SizedBox(
+                      width: 16.0,
+                    ),
+                    if(tabController.index != TABS.length - 1)
+                    ElevatedButton(
+                      onPressed: () {
+                        tabController.animateTo(
+                          tabController.index + 1,
+                        );
+                      },
+                      child: Text(
+                        '다음',
+                      ),
+                    ),
                   ],
-                ))
+                )
+              ],
+            ))
             .toList(),
       ),
     );
