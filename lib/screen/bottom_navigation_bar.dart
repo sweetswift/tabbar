@@ -34,6 +34,20 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
                 ))
             .toList(),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        items: TABS
+            .map(
+              (e) => BottomNavigationBarItem(
+                icon: Icon(
+                  e.icon,
+                ),
+                label: e.label,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
