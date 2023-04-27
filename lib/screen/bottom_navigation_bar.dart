@@ -37,6 +37,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         items: TABS
             .map(
               (e) => BottomNavigationBarItem(
