@@ -16,6 +16,11 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
   void initState() {
     super.initState();
     controller = TabController(length: TABS.length, vsync: this);
+    controller.addListener(() {
+      setState(() {
+
+      });
+    });
   }
 
   @override
@@ -39,6 +44,11 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
         unselectedItemColor: Colors.grey,
         showSelectedLabels: true,
         showUnselectedLabels: true,
+        currentIndex: controller.index,
+        type: BottomNavigationBarType.shifting,
+        onTap: (index){
+          controller.animateTo(index);
+        },
         items: TABS
             .map(
               (e) => BottomNavigationBarItem(
